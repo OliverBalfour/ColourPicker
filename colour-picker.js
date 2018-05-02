@@ -74,7 +74,11 @@ function ColourPicker (onUpdate, width, height) {
 		// saturation
 		// this is a bit trickier, as saturation is the position horizontally
 		// across the triangle at the height/y of the saturation
-		this.point.x = (hsv.s / 2) + 0.25;
+		this.point.x = 0.5 + (hsv.s - 0.5) * hsv.v;
+
+		this.mouse.x = this.point.x * this.canvas.width;
+		this.mouse.y = this.point.y * this.canvas.height;
+		this.dragging = 'none';
 
 		this.draw();
 		this.update();
@@ -287,7 +291,7 @@ function ColourPicker (onUpdate, width, height) {
 
 			this.drawTriangle();
 
-		} else if (this.dragging === 'triangle') {
+		} else { // triangle or setColour
 
 			let m = this.getMeasurements();
 
