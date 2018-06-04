@@ -34,7 +34,7 @@ function ColourPicker (onUpdate, width, height) {
 	// dragging: 'none', 'hue', or 'triangle'
 	this.dragging = 'none';
 	// number of pixels to give as a margin to avoid antialiased edges being selectable
-	this.triangleMargin = 3;
+	this.triangleMargin = 4;
 
 	// hue, 0-360, on the hue circle
 	this.hue = 0;
@@ -329,7 +329,7 @@ function ColourPicker (onUpdate, width, height) {
 			this.onUpdate(this.selectedColour);
 	}
 
-	this.indicatorCanvas.addEventListener('mousedown', event => {
+	this.indicatorCanvas.addEventListener('pointerdown', event => {
 		this.updateMouseCoords(event);
 
 		let x = this.mouse.x - this.canvas.width / 2,
@@ -347,7 +347,7 @@ function ColourPicker (onUpdate, width, height) {
 		if (this.dragging !== 'none')
 			this.update();
 	});
-	this.indicatorCanvas.addEventListener('mouseup', event => {
+	this.indicatorCanvas.addEventListener('pointerup', event => {
 		this.updateMouseCoords(event);
 
 		if (this.dragging !== 'none')
@@ -355,7 +355,7 @@ function ColourPicker (onUpdate, width, height) {
 
 		this.dragging = 'none';
 	});
-	this.indicatorCanvas.addEventListener('mousemove', event => {
+	this.indicatorCanvas.addEventListener('pointermove', event => {
 		this.updateMouseCoords(event);
 
 		if (this.dragging !== 'none')
